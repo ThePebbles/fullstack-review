@@ -10,6 +10,14 @@ const App = () => {
 
   const search = (term) => {
     console.log(`${term} was searched`);
+    $.ajax({
+      type: 'POST',
+      url: '/repo',
+      data: { 'username': term },
+      success: ((data) => {
+        console.log(data);
+      })
+    })
   }
 
   return (
