@@ -100,5 +100,5 @@ let save = (...repos) => {
   //   });
   // }
 }
-
+module.exports.Repo = Repo;
 module.exports.save = save;
