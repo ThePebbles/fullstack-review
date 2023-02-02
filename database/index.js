@@ -19,14 +19,16 @@ let repoSchema = mongoose.Schema({
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
+// Repo.remove();
 
-let save = (...repos) => {
+let save = (repos) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  return repos.forEach((repo) => {
-    Repo.findOne({'repoId': repo.id})
+  var array = repos.map((repo) => {
+    return Repo.findOne({'repoId': repo.id})
     .then((results) => {
+      //console.log('find one results: ', results)
       if (!results) {
         return Repo.create({
           'repoId': repo.id,
@@ -35,33 +37,40 @@ let save = (...repos) => {
           'description': repo.description,
           'ownerId': repo.owner.id,
           'ownerLogin': repo.owner.login,
-          'forksCount': repo.fork_count
+          'forksCount': repo.forks_count
         })
         .then((repoEntry) => {
-          return repoEntry.save()
+          return repoEntry.save();
         })
         .catch((err) => {
-          console.log('Error in save: ', err);
+          console.log('Error in save create: ', err);
         })
       } else {
-        return Repo.update({
+        return Repo.updateOne({
           'repoId': repo.id,
           'repoName': repo.name,
           'repoUrl': repo.url,
           'description': repo.description,
           'ownerId': repo.owner.id,
           'ownerLogin': repo.owner.login,
-          'forksCount': repo.fork_count
+          'forksCount': repo.forks_count
         })
         .then((repoEntry) => {
-          return repoEntry.save()
+          return Repo.findOne({'repoId': repo.id});
         })
         .catch((err) => {
-          console.log('Error in save: ', err);
+          console.log('Error in save update: ', err);
         })
       }
     });
   });
+  return Promise.all(array)
+    .then((results) => {
+      return results;
+    })
+    .catch((err) => {
+      return err;
+    });
   // basic logic
   //   var repoEntry = Repo.create({   or Repo.update
   //     'repoId': repo.id,
