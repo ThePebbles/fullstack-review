@@ -41,7 +41,7 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  index.Repo.find().sort({'forkCount': 1}).limit(25)
+  index.Repo.find().sort({'forksCount': -1}).limit(25)
   .then((results) => {
     //console.log('Results from getting top 25 from Get: ', results);
     res.status(200).send(results);

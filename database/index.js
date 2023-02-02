@@ -29,11 +29,14 @@ let save = (repos) => {
     return Repo.findOne({'repoId': repo.id})
     .then((results) => {
       //console.log('find one results: ', results)
+      if (repo.forks_count === null) {
+        repo.forks_count = 0;
+      }
       if (!results) {
         return Repo.create({
           'repoId': repo.id,
           'repoName': repo.name,
-          'repoUrl': repo.url,
+          'repoUrl': repo.html_url,
           'description': repo.description,
           'ownerId': repo.owner.id,
           'ownerLogin': repo.owner.login,
