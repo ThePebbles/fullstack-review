@@ -1,0 +1,46 @@
+body {
+  background-color: aliceblue;
+}
+
+li {
+  border: black solid;
+  border-radius: 10px;
+  margin: 5px;
+  width: 438px;
+}
+.RepoName {
+  color: rgb(12, 128, 236);
+  text-align: center;
+  font-size: larger;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.RepoName :hover {
+  color: rgb(6, 223, 212);
+  font-weight: bold;
+}
+
+.OwnerName {
+  font-family: 'Quicksand', sans-serif;
+  position: relative;
+  top: 10px;
+  left: 15px;
+  right: 5px;
+  bottom: 5px;
+}
+
+.ForkCount {
+  font-family: 'Quicksand', sans-serif;
+  position: relative;
+  top: -10px;
+  left: 329px;
+  right: 5px;
+  bottom: 5px;
+}
+
+.Description {
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  position: relative;
+  top: 2px;
+}
