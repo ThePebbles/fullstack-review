@@ -32,6 +32,9 @@ let save = (repos) => {
       if (repo.forks_count === null) {
         repo.forks_count = 0;
       }
+      if (repo.description === null) {
+        repo.description = 'No description listed at this time'
+      }
       if (!results) {
         return Repo.create({
           'repoId': repo.id,

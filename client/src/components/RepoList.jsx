@@ -4,11 +4,12 @@ const RepoList = ({ repos }) => {
   var allRepos = repos.map((repo) => {
     return (
       <li>
-        <div>
-          <a className='RepoName' href={repo.repoUrl} target='_blank'>
+        <div className='RepoName'>
+          <a href={repo.repoUrl} target='_blank'>
             {repo.repoName}
           </a>
         </div>
+        <div className='Description'> Description: {repo.description}</div>
         <div className='OwnerName'>Owner: {repo.ownerLogin}</div>
         <div className='ForkCount'> Forks: {repo.forksCount}</div>
       </li>
